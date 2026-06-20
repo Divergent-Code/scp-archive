@@ -1,0 +1,550 @@
+/* SCP Foundation Archive - Global Styles */
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #1a1a1a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #888888;
+  --text-muted: #555555;
+  --accent-green: #00ff41;
+  --accent-amber: #ffb000;
+  --accent-red: #ff3333;
+  --accent-blue: #4488ff;
+  --accent-purple: #aa66ff;
+  --accent-cyan: #00ddff;
+  --border: #222222;
+  --border-light: #333333;
+  --safe-color: #00cc44;
+  --euclid-color: #ffaa00;
+  --keter-color: #ff2222;
+  --thaumiel-color: #4488ff;
+  --apollyon-color: #ff00ff;
+  --archon-color: #00ddff;
+  --neutralized-color: #888888;
+  --explained-color: #66cc66;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Courier New', 'Consolas', monospace;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header / Navigation */
+.header {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  background: var(--bg-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--accent-green);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.logo span {
+  color: var(--text-muted);
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent-green);
+  text-decoration: none;
+}
+
+.nav-links a.active {
+  color: var(--accent-green);
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px 12px;
+  background: #000;
+  border: 1px solid var(--border);
+  color: var(--accent-green);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.search-bar input:focus {
+  border-color: var(--accent-green);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-light);
+}
+
+.scp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+}
+
+/* Object Class Badge */
+.object-class {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.object-class.safe { background: rgba(0, 204, 68, 0.15); color: var(--safe-color); border: 1px solid var(--safe-color); }
+.object-class.euclid { background: rgba(255, 170, 0, 0.15); color: var(--euclid-color); border: 1px solid var(--euclid-color); }
+.object-class.keter { background: rgba(255, 34, 34, 0.15); color: var(--keter-color); border: 1px solid var(--keter-color); }
+.object-class.thaumiel { background: rgba(68, 136, 255, 0.15); color: var(--thaumiel-color); border: 1px solid var(--thaumiel-color); }
+.object-class.apollyon { background: rgba(255, 0, 255, 0.15); color: var(--apollyon-color); border: 1px solid var(--apollyon-color); }
+.object-class.archon { background: rgba(0, 221, 255, 0.15); color: var(--archon-color); border: 1px solid var(--archon-color); }
+.object-class.neutralized { background: rgba(136, 136, 136, 0.15); color: var(--neutralized-color); border: 1px solid var(--neutralized-color); }
+.object-class.explained { background: rgba(102, 204, 102, 0.15); color: var(--explained-color); border: 1px solid var(--explained-color); }
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 1px 6px;
+  margin: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.tag:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.btn-primary {
+  background: rgba(0, 255, 65, 0.1);
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.btn-primary:hover {
+  background: rgba(0, 255, 65, 0.2);
+}
+
+.btn-ghost {
+  border: none;
+  color: var(--text-secondary);
+}
+
+.btn-ghost:hover {
+  color: var(--accent-green);
+  border: none;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.pagination button:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.pagination button.active {
+  background: rgba(0, 255, 65, 0.1);
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+/* SCP Detail Page */
+.scp-detail {
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.scp-detail-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.scp-detail-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.scp-detail-header .meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.scp-section {
+  margin-bottom: 32px;
+}
+
+.scp-section h2 {
+  font-size: 1.1rem;
+  color: var(--accent-amber);
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.scp-section .content {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+}
+
+/* AI Chat */
+.chat-container {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 200px);
+  min-height: 400px;
+}
+
+.chat-header {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.chat-header h1 {
+  font-size: 1.3rem;
+  color: var(--accent-green);
+  margin-bottom: 4px;
+}
+
+.chat-header p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat-message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+.chat-message.assistant {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.chat-input-area input {
+  flex: 1;
+  padding: 10px 14px;
+  background: #000;
+  border: 1px solid var(--border);
+  color: var(--accent-green);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.chat-input-area input:focus {
+  border-color: var(--accent-green);
+}
+
+/* Landing Page Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-card .stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent-green);
+  font-family: 'Courier New', monospace;
+}
+
+.stat-card .stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* Loading / Status */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+}
+
+.loading::after {
+  content: "...";
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: "."; }
+  40% { content: ".."; }
+  60%, 100% { content: "..."; }
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  color: var(--accent-red);
+}
+
+/* Filters bar */
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.filters select {
+  padding: 6px 10px;
+  background: #000;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.filters select:focus {
+  border-color: var(--accent-green);
+}
+
+/* Results count */
+.results-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* SCP Card specific */
+.scp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.scp-card-header h3 {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.scp-card-header h3 a {
+  color: var(--text-primary);
+}
+
+.scp-card-header h3 a:hover {
+  color: var(--accent-cyan);
+}
+
+.scp-card-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.scp-card-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.scp-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.scp-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .scp-grid {
+    grid-template-columns: 1fr;
+  }
+  .header-inner {
+    flex-wrap: wrap;
+  }
+  .search-bar {
+    max-width: 100%;
+    order: 3;
+    flex-basis: 100%;
+  }
+  .nav-links {
+    gap: 12px;
+  }
+}
