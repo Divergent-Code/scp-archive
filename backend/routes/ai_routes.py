@@ -26,7 +26,7 @@ def ai_status():
     """Check if the AI guide is configured."""
     return {
         "available": guide.is_available(),
-        "message": "AI Guide is ready" if guide.is_available() else "AI Guide not configured - set OPENAI_API_KEY"
+        "message": "AI Guide is ready" if guide.is_available() else "AI Guide not configured - set ANTHROPIC_API_KEY"
     }
 
 

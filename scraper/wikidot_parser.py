@@ -109,7 +109,7 @@ class WikidotParser:
         plain = re.sub(r'\*\*(.+?)\*\*', r'\1', plain)
         plain = re.sub(r'//(.+?)//', r'\1', plain)
         plain = re.sub(r'--(.+?)--', r'\1', plain)
-        plain = re.sub(r'__()__', r'\1', plain)
+        plain = re.sub(r'__(.+?)__', r'\1', plain)
         plain = re.sub(r'\[\[\[([^\|]+?)(?:\|(.+?))?\]\]\]', r'\1', plain)
         plain = re.sub(r'\[\[[^\]]+\]\]', '', plain)
         plain = re.sub(r'\[\[/.*?\]\]', '', plain)

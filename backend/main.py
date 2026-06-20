@@ -3,7 +3,7 @@ SCP Archive API Server
 FastAPI application serving the SCP Foundation archive.
 """
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 import os
 

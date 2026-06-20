@@ -66,7 +66,7 @@ class AIGuide:
 
         try:
             response = self.client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-sonnet-4-6",
                 system=SYSTEM_PROMPT,
                 messages=messages,
                 max_tokens=1000,
@@ -135,7 +135,7 @@ class AIGuide:
 
         try:
             response = self.client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-sonnet-4-6",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=300,
                 temperature=0.1,

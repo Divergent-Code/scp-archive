@@ -8,3 +8,10 @@ scraper/data/*.json
 .DS_Store
 dist/
 build/
+.claude
+.codex
+.cursor
+.gemini
+.qodo   
+.venv
+.vscode
