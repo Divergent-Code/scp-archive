@@ -40,13 +40,14 @@ class SCPScraper:
 
     def _extract_rating(self, soup: BeautifulSoup) -> int:
         """Extract page rating from Wikidot."""
-        rating_span = soup.find("span", class_="rating")
-        if rating_span:
-            rating_text = rating_span.get_text(strip=True)
-            try:
-                return int(rating_text)
-            except ValueError:
-                pass
+        rate_points = soup.find("span", class_="rate-points")
+        if rate_points:
+            number_span = rate_points.find("span", class_="number")
+            if number_span:
+                try:
+                    return int(number_span.get_text(strip=True).lstrip("+"))
+                except ValueError:
+                    pass
         return 0
 
     def _extract_tags(self, soup: BeautifulSoup) -> list[str]:
@@ -60,15 +61,30 @@ class SCPScraper:
                     tags.append(tag_text.lower())
         return tags
 
-    def _extract_author(self, soup: BeautifulSoup) -> str | None:
-        """Extract author/contributor info."""
-        byline = soup.find("span", class_="printuser")
-        if byline:
-            author_a = byline.find("a")
-            if author_a:
-                return author_a.get_text(strip=True)
-            return byline.get_text(strip=True)
-        return None
+    def _extract_attribution(self, soup: BeautifulSoup) -> tuple[str | None, str | None, str | None]:
+        """Extract (author, license, source_url) from the licensebox."""
+        licensebox = soup.find(class_="licensebox")
+        if not licensebox:
+            return None, None, None
+
+        text = licensebox.get_text(separator=" ", strip=True)
+
+        author = None
+        m = re.search(r'["“][^"”]+["”]\s+by\s+([^,\.]+)', text)
+        if m:
+            author = m.group(1).strip()
+
+        license_str = None
+        m = re.search(r'Licensed under\s+([A-Z][^\.\n]+?)(?:\.|$)', text)
+        if m:
+            license_str = m.group(1).strip()
+
+        source_url = None
+        m = re.search(r'Source:\s*(https?://\S+)', text)
+        if m:
+            source_url = m.group(1).rstrip(".")
+
+        return author, license_str, source_url
 
     def _extract_object_class(self, soup: BeautifulSoup) -> str | None:
         """Extract the object class from the page content."""
@@ -162,9 +178,14 @@ class SCPScraper:
                 print(f"  [!] No content found at {url}")
                 return None
 
-            # Extract title
-            title_tag = soup.find("title")
-            title = title_tag.get_text(strip=True) if title_tag else entry_id or url
+            # Extract title from #page-title div (avoids " - SCP Foundation" suffix)
+            page_title_div = soup.find("div", id="page-title")
+            if page_title_div:
+                title = page_title_div.get_text(strip=True)
+            else:
+                title_tag = soup.find("title")
+                raw = title_tag.get_text(strip=True) if title_tag else ""
+                title = re.sub(r"\s*-\s*SCP Foundation$", "", raw).strip() or entry_id or url
 
             # Get raw content text for parsing
             raw_content = str(content_div)
@@ -176,7 +197,7 @@ class SCPScraper:
             # Extract metadata
             rating = self._extract_rating(soup)
             tags = self._extract_tags(soup)
-            author = self._extract_author(soup)
+            author, license_str, source_url = self._extract_attribution(soup)
             object_class = self._extract_object_class(soup)
             secondary_class = self._extract_secondary_class(content_text)
             containment = self._extract_containment_procedures(content_text)
@@ -207,6 +228,8 @@ class SCPScraper:
                 related_scps=related,
                 content_html=content_html,
                 content_md=content_text,
+                license=license_str,
+                source_url=source_url or url,
             )
 
             print(f"  [+] Scraped: {entry.id} - {entry.title}")

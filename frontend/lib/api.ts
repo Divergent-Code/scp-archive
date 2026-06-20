@@ -30,6 +30,8 @@ export interface SCPDetail {
   related_scps: string[];
   series: number | null;
   image_urls: string[];
+  license: string | null;
+  source_url: string | null;
 }
 
 export interface PaginatedResponse<T> {

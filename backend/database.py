@@ -34,6 +34,8 @@ class SCPModel(Base):
     content_md = Column(Text, default="")
     series = Column(Integer, nullable=True)
     image_urls_json = Column(Text, default="[]")
+    license = Column(String, nullable=True)
+    source_url = Column(String, nullable=True)
 
     @property
     def tags(self) -> list[str]:
@@ -76,6 +78,8 @@ class SCPModel(Base):
             "related_scps": self.related_scps,
             "series": self.series,
             "image_urls": self.image_urls,
+            "license": self.license,
+            "source_url": self.source_url,
         }
 
     def to_card(self) -> dict:
@@ -159,6 +163,8 @@ def import_from_json(db: Session, json_file: str):
             content_md=entry_data.get("content_md", ""),
             series=series,
             image_urls_json=json.dumps(images),
+            license=entry_data.get("license"),
+            source_url=entry_data.get("source_url"),
         )
         db.add(model)
 

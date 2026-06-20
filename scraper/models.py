@@ -25,6 +25,8 @@ class SCPEntry:
     content_md: str = ""
     series: Optional[int] = None
     image_urls: list[str] = field(default_factory=list)
+    license: Optional[str] = None          # e.g. "CC BY-SA 3.0"
+    source_url: Optional[str] = None       # canonical URL from licensebox
 
     def to_dict(self) -> dict:
         return asdict(self)
